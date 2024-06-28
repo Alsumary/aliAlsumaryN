@@ -39,11 +39,3 @@ def gallery(request):
         'gT': galleryTitle,
         'gallery': gallery,
     })
-
-def swipper(request, gallery_id):
-        infoDB = information.objects.get(pk=1)
-        galleryDB = gallerys.objects.get(pk=gallery_id)
-        return render(request, 'sliders.html',{
-        'i': infoDB,
-        'gallery': galleryDB,
-    })
