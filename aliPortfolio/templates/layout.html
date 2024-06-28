@@ -72,7 +72,9 @@
       </div>
       <div class="absolute left-[50%] top-2 translate-x-[-50%]" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
         <div class="flex flex-col items-center justify-center mt-2 w-16 md:w-20">
-          <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYjaaBrkeHP_QfajTMQnhH5X8T48xSV3shIsx4GE7Jn7LOebQuSpx1pim9Z9hiGYbRShSM6plj1kddJ8OL-XZ3qlxSsmOeULOw=s1600-rw-v1" class="flex items-center justify-center border-solid rounded-full bg-[#121212] border-white border-2 p-1 alsumaryLogo">
+          <a href="{% url 'index' %}">
+            <img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYjaaBrkeHP_QfajTMQnhH5X8T48xSV3shIsx4GE7Jn7LOebQuSpx1pim9Z9hiGYbRShSM6plj1kddJ8OL-XZ3qlxSsmOeULOw=s1600-rw-v1" class="flex items-center justify-center border-solid rounded-full bg-[#121212] border-white border-2 p-1 alsumaryLogo">
+          </a>
         </div>
       </div>
 
@@ -89,7 +91,7 @@
     </header>
     <!-- Modal Container -->
     {% with request.resolver_match.url_name as url_name %}
-<div id="myModal" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center transition-opacity {% if url_name == 'swipper' %} z-50 {% endif %}">
+<div id="myModal" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center transition-opacity">
     {% endwith %}
   <div class=" bg-white/75 rounded-lg p-8 sm:max-w-md w-full sm:mx-auto mx-2 transform transition-transform duration-300 scale-0 shadow-sm shadow-white/75 backdrop-blur-sm z-50">
 
