@@ -1,0 +1,321 @@
+
+:root{
+  --bg-color: #1b1b1b;
+  --text-color: #ffffff;
+  --gray-color: #3c3c3b ;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  /* font-size: 95%; */
+}
+
+body {
+font-family: Roboto, Helvetica, Arial, sans-serif;
+line-height: 1.4;
+color: var(--text-color);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+}
+@keyframes rainbow {
+0% {background-color: transparent}
+15% {background-color: #ff0000ac;}
+30% {background-color: #ff800080;}
+45% {background-color: #ffff0080;}
+60% {background-color: #80ff0080;}
+75% {background-color: #0000ff80;}
+0% {background-color: transparent}
+}
+.alsumaryLogo{
+transition: background-color 2s ease-out 100ms
+}
+.alsumaryLogo:hover {
+animation:rainbow 2s infinite;  
+}
+
+.underlineA{
+display: inline-block;
+position: relative;
+}
+.underlineA::before{
+content: "";
+position: absolute;
+right: 0;
+left: 0;
+bottom: 0;
+width: 0;
+height: 2px;
+background-color: white;
+transition: width 0.25s ease-out;
+}
+
+.underlineA:hover::before{
+width: 100%;
+left: 0;
+right: auto;
+}
+
+.underlineActive{
+display: inline-block;
+position: relative;
+}
+.underlineActive::before{
+content: "";
+position: absolute;
+right: 0;
+left: 0;
+bottom: 0;
+width: 100%;
+height: 2px;
+background-color: white;
+transition: width 0.25s ease-out;
+}
+
+.change .bar1 {
+transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+transform: translate(0, -11px) rotate(45deg);
+}
+
+
+
+
+.underlineAB{
+  display: inline-block;
+  position: relative;
+  }
+  .underlineAB::before{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width 0.25s ease-out;
+  }
+  
+  .underlineAB:hover::before{
+  width: 100%;
+  left: 0;
+  right: auto;
+  }
+  
+  .underlineActiveB{
+  display: inline-block;
+  position: relative;
+  }
+  .underlineActiveB::before{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.25s ease-out;
+  }
+  .animate-spin-slow{
+    animation: spin 8s linear infinite;
+  }
+  .portBox{
+    border-radius: 20px;
+    box-shadow: 10px 10px 0px 3px white;
+  }
+
+  .bg-circularDark {
+    background-image: repeating-radial-gradient(hsla(0,0%,100%,.5) 2px,#1b1b1b 8px,#1b1b1b 100px)
+  }
+  .bg-circularDarkLg {
+    background-image: repeating-radial-gradient(hsla(0,0%,100%,.5) 2px,#1b1b1b 8px,#1b1b1b 80px)
+  }
+  .bg-circularDarkMd {
+    background-image: repeating-radial-gradient(hsla(0,0%,100%,.5) 2px,#1b1b1b 8px,#1b1b1b 60px)
+  }
+  .bg-circularDarkSm {
+    background-image: repeating-radial-gradient(hsla(0,0%,100%,.5) 2px,#1b1b1b 8px,#1b1b1b 40px)
+  }
+  .ul-Line{
+    --tw-shadow: 0 15px 15px 1px rgba(80,230,217,.4);
+    --tw-shadow-colored: 0 15px 15px 1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
+  }
+  .skill-2 {
+    animation-name: s2;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-3 {
+    animation-name: s3;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-4 {
+    animation-name: s4;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+
+  .skill-5 {
+    animation-name: s5;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-6 {
+    animation-name: s6;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+
+  .skill-7 {
+    animation-name: s7;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-8 {
+    animation-name: s8;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+
+  .skill-9 {
+    animation-name: s9;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+
+  .skill-10 {
+    animation-name: s10;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-11 {
+    animation-name: s11;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  .skill-12 {
+    animation-name: s12;
+    animation-duration: 2s;
+    animation-direction: normal;
+  }
+  @keyframes s2{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(-20vw) translateY(2vw) translateZ(0px);
+    }
+  }
+
+  @keyframes s3{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(-5vw) translateY(-10vw) translateZ(0px);
+    }
+  }
+  @keyframes s4{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(20vw) translateY(6vw) translateZ(0px);
+    }
+  }
+  @keyframes s5{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(0vw) translateY(12vw) translateZ(0px);
+    }
+  }
+
+  @keyframes s6{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(-20vw) translateY(-15vw) translateZ(0px);
+    }
+  }
+  @keyframes s7{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(15vw) translateY(-12vw) translateZ(0px);
+    }
+  }
+  @keyframes s8{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(-35vw) translateY(-5vw) translateZ(0px);
+    }
+  }
+  @keyframes s9{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(32vw) translateY(-5vw) translateZ(0px);
+    }
+  }
+  @keyframes s10{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(0vw) translateY(-20vw) translateZ(0px);
+    }
+  }
+  @keyframes s11{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(-25vw) translateY(18vw) translateZ(0px);
+    }
+  }
+  @keyframes s12{
+    from{
+      transform: translateX(0vw) translateY(0vw) translateZ(0px);
+    }
+    to{
+      transform: translateX(28vw) translateY(18vw) translateZ(0px);
+    }
+  }
+  .swiper-button-next:after, .swiper-button-prev:after{
+    color:#1b1b1b;
+    border-radius: 50%;
+    background-color: #58e6d9;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+

@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% load static %}
+{% block title %} Gallery {% endblock %}
+
+{% block body %}
+
+<div class="flex justify-center text-center text-2xl mt-8 font-bold md:text-4xl lg:text-5xl mx-2 flex-col">
+    <span class="text-lg md:text-xl font-medium text-[#58e6d9] xs:text-base">{{gallery.type}}</span>
+    <h1>{{gallery.title}}</h1>
+</div>
+<div class="swiper h-full w-[75%] my-4">
+    <div class="swiper-wrapper">
+        {% for g in gallery.photos.all %}
+        
+        <div class="swiper-slide flex text-center justify-center" data-swiper-autoplay="2000">
+            <img src="{{g.link}}"alt="">
+        </div>
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  
+</div>
+
+
+
+{% endblock %}
