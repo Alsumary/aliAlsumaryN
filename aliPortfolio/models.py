@@ -61,7 +61,7 @@ class gallerys(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=500)
     mainPhoto = models.ForeignKey(photos, on_delete=models.CASCADE, blank=True, null=True, related_name="photos")
-    photos = models.ManyToManyField(photos, blank=True)
+    visitLink = models.TextField(max_length=2500, default='1')
     fullWidth = models.BooleanField(default=False)
 
     def __str__(self):
