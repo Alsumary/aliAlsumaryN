@@ -13,7 +13,7 @@
         <div class="col-span-12 galleryo" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
             <div class="w-full border-2 border-white border-solid  flex md:flex-row flex-col rounded-3xl lg:items-center" style="box-shadow: 6px 6px 0px 6px rgba(255,255,255,1);">
                 <div class="w-full flex items-center">
-                    <a href="{% url 'swipper' g.pk %}">
+                    <a href="{{g.visitLink}}" target="_blank">
                         <img src="{{g.mainPhoto.link}}" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" class="object-fit hover:scale-105 transition duration-400 w-full h-auto rounded-t-3xl md:rounded-l-3xl">
                     </a>
                 </div>
@@ -26,15 +26,11 @@
                         {{g.content | linebreaksbr}}
                     </p>
                     <div class="mt-2 flex items-center">
-                        <a class="rounded-lg p-2 px-6 text-lg font-semibold bg-white text-black  sm:px-4 sm:text-base " aria-label="Crypto Screener Application" href="{% url 'swipper' g.pk %}">
+                        <a class="rounded-lg p-2 px-6 text-lg font-semibold bg-white text-black  sm:px-4 sm:text-base " aria-label="Crypto Screener Application" href="{{g.visitLink}}" target="_blank">
                             Visit Gallery</a>
                         </div>
                     </div>
             </div>
-
-
-
-
         </div>
 
         {% else %}
@@ -42,7 +38,7 @@
         <div class="col-span-12 md:col-span-6" data-aos="fade-right">
             <div class="w-full border-2 border-white border-solid p-4 lg:p-12 flex flex-col rounded-3xl" style="box-shadow: 6px 6px 0px 6px rgba(255,255,255,1);">
                 <div class="w-full flex items-center">
-                    <a href="{% url 'swipper' g.pk %}">
+                    <a href="{{g.visitLink}}" target="_blank">
                         <img src="{{g.mainPhoto.link}}" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" class="hover:scale-105 transition duration-400 w-full h-auto rounded-3xl">
                     </a>
                 </div>
@@ -51,8 +47,11 @@
                         <h2 class="my-2 w-full text-left text-2xl font-bold lg:text-3xl">
                             {{g.title}}
                         </h2>
+                        <p class=" my-2 rounded-md font-medium text-white sm:text-sm">
+                            {{g.content | linebreaksbr}}
+                        </p>
                     <div class="mt-2 flex items-center">
-                        <a href="{% url 'swipper' g.pk %}"  class="underline rounded-lg text-lg font-semibold text-white  sm:text-base " aria-label="Crypto Screener Application">
+                        <a href="{{g.visitLink}}" target="_blank" class="underline rounded-lg text-lg font-semibold text-white  sm:text-base " aria-label="Crypto Screener Application">
                             Visit</a>
                         </div>
                     </div>
