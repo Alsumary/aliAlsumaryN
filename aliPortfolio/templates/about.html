@@ -1,0 +1,173 @@
+{% extends "layout.html" %} {% load static %}
+{% block title %} About {% endblock %}
+
+{% block body %}
+
+<div class="flex justify-center text-center text-5xl my-16 font-bold md:text-6xl lg:text-7xl mx-2" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <h1>{{aboutDB.TitleText}}</h1>
+</div>
+<div class="grid xl:grid-cols-3 md:grid-cols-2  grid-rows-1 gap-x-8 flex-row mx-8 md:mx-24 lg:mx-28 xl:mx-32" >
+    <div class="relative h-max rounded-2xl border-2 border-solid border-white  bg-[#1b1b1b] mb-16 inline md:hidden -z-10 portBox" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <img class="rounded-2xl" src="{{aboutDB.personalImage}}" alt="">
+    </div>
+    <h1 class="md:mb-10" data-aos="fade-up">
+        <p class="mb-4 text-lg font-bold uppercase text-white/75">BIOGRAPHY</p>
+        <p class="font-medium">{{aboutDB.aboutme | linebreaksbr }}</p>
+
+    </h1>
+    <div class="relative h-max rounded-2xl border-2 border-solid border-white  bg-[#1b1b1b] my-16 xl:my-0 hidden md:inline portBox" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <img class="rounded-2xl" src="{{aboutDB.personalImage}}" alt="">
+    </div>
+    <div class="hidden xl:flex justify-between flex-row xl:flex-col items-center my-20 md:my-0" data-aos="fade-right" data-aos-anchor-placement="top-bottom">
+        <div class="text-center font-bold">
+            <h1 class="text-2xl md:text-4xl lg:text-7xl num" data-val="{{aboutDB.counterOneNumber}}">0</h1>
+            <h3 class="text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterOneName}}</h3>
+        </div>
+        <div  class="text-center font-bold">
+            <h1 class="text-2xl md:text-4xl lg:text-7xl num" data-val="{{aboutDB.counterTwoNumber}}">0</h1>
+            <h3 class="text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterTwoName}}</h3>
+        </div>
+        <div  class="text-center font-bold">
+            <h1 class="text-2xl md:text-4xl lg:text-7xl num" data-val="{{aboutDB.counterThreeNumber}}">0</h1>
+            <h3 class="text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterThreeName}}</h3>
+        </div>
+    </div>
+</div>
+<div class="xl:hidden flex justify-around flex-row xl:flex-col items-center my-20 md:my-0">
+    <div class="text-center font-bold">
+        <h1 class="text-5xl md:text-7xl num" data-val="{{aboutDB.counterOneNumber}}">0</h1>
+        <h3 class="text-sm md:text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterOneName}}</h3>
+    </div>
+    <div  class="text-center font-bold">
+        <h1 class="text-5xl md:text-7xl num" data-val="{{aboutDB.counterTwoNumber}}">0</h1>
+        <h3 class="text-sm md:text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterTwoName}}</h3>
+    </div>
+    <div  class="text-center font-bold">
+        <h1 class="text-5xl md:text-7xl num" data-val="{{aboutDB.counterThreeNumber}}">0</h1>
+        <h3 class="text-sm md:text-xl text-[#f5f5f5bf] font-semibold">{{aboutDB.counterThreeName}}</h3>
+    </div>
+</div>
+
+<div class="flex justify-center text-center text-6xl my-16 font-bold lg:text-7xl mx-2" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <h1>Skills</h1>
+</div>
+<div class="mx-4 md:mx-28 h-[100vh] relative bg-circularDark  flex items-center justify-center  mb-16 md:mb-32 rounded-full lg:bg-circularDarkLg md:bg-circularDarkMd sm:bg-circularDarkSm lg:h-[80vh] sm:h-[60vh] h-[50vh]">
+    {% if 15 >= skillsDB|length %}
+        {% for skill in skillsDB %}
+                {% if forloop.counter == 1 %}
+                    <div class="skill-1 cursor-pointer flex rounded-full font-semibold bg-white text-black p-4 shadow-black font-bold md:font-semibold lg:p-6 sm:p-4 xs:text-xs xs:p-2 " style="transition: transform 0.5s ease; transform: none;">
+                        {{ skill.title }}
+                    </div>
+                {% elif forloop.counter == 2 %}
+                    <div class="skill-2 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold  " style="transition: transform 0.5s ease; transform: translateX(-20vw) translateY(2vw) translateZ(0px);">
+                        {{ skill.title }}
+                    </div>
+                {% elif forloop.counter == 3 %}
+                <div class="skill-3 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transition: transform 0.5s ease; transform: translateX(-5vw) translateY(-10vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 4 %}
+                <div class="skill-4 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(20vw) translateY(6vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 5 %}
+                <div class="skill-5 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(0vw) translateY(12vw) translateZ(0px);">
+                    {{ skill.title }}   
+                </div>
+                {% elif forloop.counter == 6 %}
+                <div class="skill-6 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(-20vw) translateY(-15vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 7 %}
+                <div class="skill-7 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(15vw) translateY(-12vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 8 %}
+                <div class="skill-8 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(-35vw) translateY(-5vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 9 %}
+                <div class="skill-9 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(32vw) translateY(-5vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 10 %}
+                <div class="skill-10 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(0vw) translateY(-20vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 11 %}
+                <div class="skill-11 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(-25vw) translateY(18vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% elif forloop.counter == 12 %}
+                <div class="skill-12 cursor-pointer w-max origin-center absolute  font-semibold bg-black text-white py-3 px-6 rounded-full sm:bg-white  sm:text-black bg-transparent font-bold md:font-semibold lg:py-4 lg:px-8 md:text-sm md:py-1.5 md:px-3  xs:bg-transparent xs:bg-transparent xs:text-black xs:text-white xs:font-bold " style="transition: transform 0.5s ease; transform: translateX(28vw) translateY(18vw) translateZ(0px);">
+                    {{ skill.title }}
+                </div>
+                {% endif %}
+        {% endfor %}
+        {% endif %}       
+
+</div>
+
+
+<div class="flex justify-center text-center text-6xl my-16 font-bold lg:text-7xl mx-2" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <h1>Experience</h1>
+</div>
+
+
+<div class="relative lg:w-[60%] mx-auto w-[90%] md:w-full mb-16">
+    <div class="absolute left-9 top-1 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full bg-[#58e6d9]  origin-top rounded-full ul-Line  shadow-3xl"></div>
+    <ul class="w-full flex flex-col items-start justify-between xs:ml-4">
+        {% for experience in experienceDB %}
+        <li class="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%]">
+            <figure class="stroke-black absolute left-0 stroke-white">
+                <svg class="-rotate-90 md:w-[60px] md:h-[60px] xs:w-[40px] xs:h-[40px]" width="75" height="75" viewBox="0 0 100 100">
+                    <circle cx="75" cy="50" r="20" pathLength="1" class="stroke-primary  stroke-1 fill-none stroke-white"></circle>
+                    <circle cx="75" cy="50" r="20" pathLength="1" class=" stroke-[5px] fill-[#1b1b1b]" stroke-dashoffset="0px"></circle>
+                    <circle cx="75" cy="50" r="10" pathLength="1" class=" stroke-1 fill-[#58e6d9]"></circle>
+                </svg>
+            </figure>
+            <div style="transform: none;" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <h3 class="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
+                    {{ experience.title }}
+                </h3>
+                <span class="capitalize text-black/75 font-medium text-white/50 xs:text-sm">{{ experience.time }}</span>
+                <p class="font-medium w-full md:text-sm">
+                    {{ experience.content }}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="flex justify-center text-center text-6xl my-16 font-bold lg:text-7xl mx-2" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <h1>Education</h1>
+</div>
+
+
+<div class="relative lg:w-[60%] mx-auto w-[90%] md:w-full mb-16">
+    <div class="absolute left-9 top-1 w-[4px] md:w-[2px] md:left-[30px] xs:left-[20px] h-full bg-[#58e6d9]  origin-top rounded-full ul-Line  shadow-3xl"></div>
+    <ul class="w-full flex flex-col items-start justify-between">
+        {% for education in educationDB %}
+        <li class="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-start justify-between md:w-[80%]">
+            <figure class="stroke-black absolute left-0 stroke-white">
+                <svg class="-rotate-90 md:w-[60px] md:h-[60px] xs:w-[40px] xs:h-[40px]" width="75" height="75" viewBox="0 0 100 100">
+                    <circle cx="75" cy="50" r="20" pathLength="1" class="stroke-primary  stroke-1 fill-none stroke-white"></circle>
+                    <circle cx="75" cy="50" r="20" pathLength="1" class=" stroke-[5px] fill-[#1b1b1b]" stroke-dashoffset="0px"></circle>
+                    <circle cx="75" cy="50" r="10" pathLength="1" class=" stroke-1 fill-[#58e6d9]"></circle>
+                </svg>
+            </figure>
+            <div style="transform: none;" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <h3 class="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
+                    {{ education.title }}
+                </h3>
+                <span class="capitalize text-black/75 font-medium text-white/50 xs:text-sm">{{ education.time }}</span>
+                <p class="font-medium w-full md:text-sm">
+                    {{ education.content }}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

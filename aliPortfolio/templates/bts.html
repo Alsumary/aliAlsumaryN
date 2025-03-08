@@ -1,0 +1,17 @@
+{% extends "layout.html" %} {% load static %}
+{% block title %} Gallery {% endblock %}
+
+{% block body %}
+
+<div class="flex justify-center text-center text-5xl my-16 font-bold md:text-6xl lg:text-7xl mx-2" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+    <h1>{{firstBTS.header}}</h1>
+</div>
+<div class="mx-8 xl:mx-32">
+    <div class="columns-2 md:columns-3 lg:columns-4">
+        {% for bts in btsDB %}
+            <img class="h-auto w-full rounded-lg mb-4" data-aos="fade-left" data-aos-anchor-placement="top-bottom" src="{{bts.photoLink}}" alt="">
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

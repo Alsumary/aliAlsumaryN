@@ -1,0 +1,191 @@
+
+{% extends "dashboard.html" %}
+{% load static %}
+{% block title %} Dashboard Gallery {% endblock %}
+
+{% block dash_body %}
+<form action="{% url 'gallery_header_edit' %}" method="POST">
+    {% csrf_token %}
+    <div class="grid gap-4 mb-4 grid-cols-2">
+        <div class="col-span-2">
+            <label for="header-input" class="block mb-2 text-sm font-medium text-gray-900 text-white">Header Text</label>
+            <input type="text" id="header-input" name="header-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" value="{{galleryTitle.pageTitle}}">
+        </div>
+    </div>
+    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 mb-4">
+        <svg class="me-1 -ms-1 w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+        </svg>
+        Submit edits
+    </button>
+</form>
+<hr class="mb-2">
+    <div class="flex justify-between items-center">
+        <h1 class="block text-lg font-medium text-gray-900 text-white">Gallery</h1>
+        <button data-modal-target="create-gallery-modal" data-modal-toggle="create-gallery-modal" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">
+            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+            Create Gallery
+        </div>
+<hr class="mb-4 mt-2">
+
+<!-- Main modal -->
+<div id="create-gallery-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <!-- Modal content -->
+        <div class="relative rounded-lg shadow-sm bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600 border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-900 text-white">
+                    New Gallery
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-toggle="create-gallery-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form class="p-4 md:p-5" action="{% url 'new_gallery' %}" method="POST">
+                
+                {% csrf_token %}
+                <div class="grid gap-4 mb-4 grid-cols-2">
+                    <div class="col-span-2">
+                        <label for="gallery-title" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Name</label>
+                        <input type="text" name="gallery-title" id="gallery-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery name" required="">
+                    </div>
+                    <div class="col-span-1">
+                        <label for="gallery-type" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Type</label>
+                        <input type="text" name="gallery-type" id="gallery-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery Type" required="">
+                    </div>
+                    <div class="col-span-1">
+                        <label for="gallery-checkbox" class="block mb-1 text-sm font-medium text-gray-900 text-white">Gallery Full Width</label>
+                        <input checked id="gallery-checkbox" name="gallery-checkbox" type="checkbox" value="on" class="w-4 h-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="gallery-photo" class="block mb-2 text-sm font-medium text-gray-900 text-white">Main Photo <span class="text-blue-500 text-xs">link address</span></label>
+                        <input type="text" name="gallery-photo" id="gallery-photo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Main Photo link" required="">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="gallery-link" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Link address</label>
+                        <input type="text" name="gallery-link" id="gallery-link" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery Link address" required="">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="gallery-content" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Content</label>
+                        <textarea id="gallery-content" name="gallery-content" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write your content here..."></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
+                    <svg class="me-1 -ms-1 w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                    </svg>
+                    Create
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="grid gap-4 mb-4 grid-cols-3">
+    {% for gallery in galleryDB %}
+    <div class="col-span-3">
+        <div class="w-full p-3 border border-gray-200 rounded-lg shadow-sm bg-[#1a1919] border-gray-700 flex justify-between">
+            <div>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-white">{{gallery.title}}</h5>
+                <h4 class="mb-2 text-l font-light tracking-tight text-blue-400">{{gallery.type}}</h4>
+                <p class="mb-2 font-normal text-gray-400">{{gallery.content|truncatechars:120}}</p>
+                {% if gallery.fullWidth %}
+                <div class="flex items-center mb-2">
+                    <input checked disabled id="gallery-{{gallery.pk}}-checkedbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600">
+                    <label for="checked-{{gallery.pk}}-checkedbox" class="ms-2 text-sm font-medium text-gray-300">Full Width gallery</label>
+                </div>
+                {% else %}
+                <div class="flex items-center mb-2">
+                    <input disabled id="checked-{{gallery.pk}}-checkbox" name="checked-{{gallery.pk}}-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600">
+                    <label for="checked-{{gallery.pk}}-checkbox" class="ms-2 text-sm font-medium text-gray-300">Full Width gallery</label>
+                </div>
+                {% endif %}
+                <button data-modal-target="gallery-{{gallery.pk}}-modal" data-modal-toggle="gallery-{{gallery.pk}}-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
+                    Edit
+                    <svg class="rtl:rotate-180 w-5 h-5 ms-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <a href="{{gallery.visitLink}}">
+                    <img src="{{gallery.photo}}" class="w-64" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% for gallery in galleryDB %}
+    <div id="gallery-{{gallery.pk}}-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative rounded-lg shadow-sm bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600 border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900 text-white">
+                        Edit Gallery <span class="text-blue-500" >{{gallery.title}}</span>
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:bg-gray-600 hover:text-white" data-modal-toggle="gallery-{{gallery.pk}}-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <form class="p-4 md:p-5" action="{% url 'gallery_edit' gallery_id=gallery.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="grid gap-4 mb-4 grid-cols-2">
+                        <div class="col-span-2">
+                            <label for="gallery-title-{{gallery.pk}}" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Name</label>
+                            <input type="text" name="gallery-title-{{gallery.pk}}" id="gallery-title-{{gallery.pk}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery name" required="" value="{{gallery.title}}">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="gallery-type-{{gallery.pk}}" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Type</label>
+                            <input type="text" name="gallery-type-{{gallery.pk}}" id="gallery-type-{{gallery.pk}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery Type" required="" value="{{gallery.type}}">
+                        </div>
+                        <div class="col-span-1">
+                            <label for="gallery-checkbox-{{gallery.pk}}" class="block mb-1 text-sm font-medium text-gray-900 text-white">Gallery Full Width</label>
+                            {% if gallery.fullWidth %}
+                            <input checked id="gallery-checkbox-{{gallery.pk}}" name="gallery-checkbox-{{gallery.pk}}" type="checkbox" value="" class="w-4 h-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600">
+                            {% else %}
+                            <input id="gallery-checkbox-{{gallery.pk}}" name="gallery-checkbox-{{gallery.pk}}" type="checkbox" value="" class="w-4 h-4 text-blue-600 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600">
+                            {% endif %}
+                        </div>
+                        <div class="col-span-2">
+                            <label for="gallery-photo-{{gallery.pk}}" class="block mb-2 text-sm font-medium text-gray-900 text-white">Main Photo <span class="text-blue-500 text-xs">link address</span></label>
+                            <input type="text" name="gallery-photo-{{gallery.pk}}" id="gallery-photo-{{gallery.pk}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery Main Photo" required="" value="{{gallery.photo}}">
+                        </div>
+                        <div class="col-span-2">
+                            <label for="gallery-link-{{gallery.pk}}" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Link address</label>
+                            <input type="text" name="gallery-link-{{gallery.pk}}" id="gallery-link-{{gallery.pk}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Gallery Link address" required="" value="{{gallery.visitLink}}">
+                        </div>
+                        <div class="col-span-2">
+                            <label for="gallery-content-{{gallery.pk}}" class="block mb-2 text-sm font-medium text-gray-900 text-white">Gallery Content</label>
+                            <textarea id="gallery-content-{{gallery.pk}}" name="gallery-content-{{gallery.pk}}" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write your content here...">{{gallery.content}}</textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
+                        <svg class="me-1 -ms-1 w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
+                        </svg>
+                        Edit Gallery
+                    </button>
+                    <a href="{% url 'gallery_delete' gallery_id=gallery.id %}" class="text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-red-600 hover:bg-red-700 focus:ring-red-800 mx-2">
+                        <svg class="me-1 -ms-1 w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        Delete
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+{% endblock %}
