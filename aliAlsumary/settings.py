@@ -20,9 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3k$d=9dv@uua2#mq50o16csm_hmullq1t@1@qyv(#em(z)&deu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['alsumary.com', '*']
+ALLOWED_HOSTS = ['alsumary.com', '*', 'alialsumaryn.onrender.com', 'www.alialsumaryn.onrender.com', 'www.alsumary.com']
 
 
 # Application definition
@@ -46,7 +46,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://alsumary.com',
+    'https://www.alsumary.com',
+    'https://alialsumaryn.onrender.com',
+]
 ROOT_URLCONF = 'aliAlsumary.urls'
 
 TEMPLATES = [
