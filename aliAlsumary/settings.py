@@ -47,8 +47,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://alsumary.com',
+    'https://alsumary.art',
+    'https://www.alsumary.art',
     'https://www.alsumary.com',
+    'https://alsumary.com',
     'https://alialsumaryn.onrender.com',
 ]
 ROOT_URLCONF = 'aliAlsumary.urls'
